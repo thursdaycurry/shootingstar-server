@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NewsModule } from './news/news.module';
-// import { typeORMConfig } from './configs/typeorm.config';
+import * as dotenv from 'dotenv';
 
 console.log(__dirname);
 
@@ -13,10 +13,10 @@ console.log(__dirname);
     NewsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'db-shootingstar.cuvbz26g00cf.us-east-1.rds.amazonaws.com',
+      host: process.env.DB_HOST,
       port: 5432,
-      username: 'postgres',
-      password: 'postgres',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
       database: 'postgres',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true, // Only for dev env
