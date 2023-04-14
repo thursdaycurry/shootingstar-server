@@ -16,24 +16,24 @@ import { UpdateNewsDto } from './dto/update-news.dto';
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}
 
-  @Get('/page')
-  @Render('main')
-  async root() {
-    const news = await this.newsService.getAllNews();
-
-    return { message: news };
-  }
-
   @Get()
   getAllNews() {
-    console.log('hello world');
     return this.newsService.getAllNews();
   }
 
-  // @Get('/log')
-  // doLog() {
-  //   return 'hello logged...';
-  // }
+  // * Testing API: Push article into DB
+  @Post()
+  create(@Body() createNewsDto) {
+    return this.newsService.create(createNewsDto);
+  }
+
+  // * Scraping News
+  @Get('/scrape')
+  @Render('main')
+  async root() {
+    const news = await this.newsService.scrape();
+    return { message: news };
+  }
 
   // @Get('/fake')
   // getFakeApi() {
@@ -47,11 +47,6 @@ export class NewsController {
   // @Get(':id')
   // findOne(@Param('id') id: string) {
   //   return this.newsService.findOne(+id);
-  // }
-
-  // @Post()
-  // create(@Body() createNewsDto: CreateNewsDto) {
-  //   return this.newsService.create(createNewsDto);
   // }
 
   // @Patch(':id')

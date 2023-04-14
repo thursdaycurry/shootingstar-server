@@ -2,28 +2,38 @@ import { Injectable } from '@nestjs/common';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
 import { HttpService } from '@nestjs/axios';
-import { News } from './entities/news.entity';
+import { NewsEntity } from './entities/news.entity';
 import { Observable } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { map } from 'rxjs/operators';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class NewsService {
   constructor(
     // constructor injection for axios request
     private readonly httpService: HttpService,
-    private readonly newsRepository: NewsRepository,
+    @InjectRepository(NewsEntity)
+    private readonly newsRepository: Repository<NewsEntity>,
   ) {}
 
-  // getAllNews(): Observable<AxiosResponse<News[]>> {
-  //   return this.httpService.get('http://107.21.144.61:5000/scrape/nyt');
-  // }
-
   getAllNews() {
+    return this.newsRepository.find();
+  }
+
+  scrape() {
+    // const scrapingData = this.httpService
+    //   .get('http://107.21.144.61:5000/scrape/nyt')
+    //   .pipe(
+    //     map((response: AxiosResponse<News[]>) => {
+    //       return response.data;
+    //     }),
+    //   );
     const scrapingData = this.httpService
       .get('http://107.21.144.61:5000/scrape/nyt')
       .pipe(
-        map((response: AxiosResponse<News[]>) => {
+        map((response: AxiosResponse) => {
           return response.data;
         }),
       );
@@ -33,9 +43,10 @@ export class NewsService {
   //   return `This action returns a #${id} news`;
   // }
 
-  // create(createNewsDto: CreateNewsDto) {
-  //   return 'This action adds a new news';
-  // }
+  create(article) {
+    // id, resource, section, title, summary, url
+    return this.newsRepository.save(article);
+  }
 
   // update(id: number, updateNewsDto: UpdateNewsDto) {
   //   return `This action updates a #${id} news`;
