@@ -16,16 +16,32 @@ import { UpdateNewsDto } from './dto/update-news.dto';
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}
 
-  @Get('/test')
-  @Render('index')
-  root() {
-    return { message: 'Hi guys' };
+  @Get('/page')
+  @Render('main')
+  async root() {
+    const news = await this.newsService.getAllNews();
+
+    return { message: news };
   }
 
   @Get()
   getAllNews() {
     return this.newsService.getAllNews();
   }
+
+  // @Get('/log')
+  // doLog() {
+  //   return 'hello logged...';
+  // }
+
+  // @Get('/fake')
+  // getFakeApi() {
+  //   return [
+  //     { id: 1, name: 'John' },
+  //     { id: 2, name: 'Sujan' },
+  //     { id: 3, name: 'Rohan ' },
+  //   ];
+  // }
 
   // @Get(':id')
   // findOne(@Param('id') id: string) {

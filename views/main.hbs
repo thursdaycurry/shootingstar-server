@@ -8,21 +8,15 @@
     </style>
   </head>
   <body>
-    <h1>Title</h1>
-    <div class='test'>hello</div>{{message}}
 
-    <form action='localhost:3000/news/log' method='get'>
-      <button type='submit'>Send GET Request</button>
-    </form>
-    <ul></ul>
+    {{message}}
 
-    <script src='js/scripts.js'></script>
     <script>
-      fetch('http://localhost:3000/news/fake') .then(res => res.json())
+      /* fetch('http://localhost:3000/news/fake') .then(res => res.json())
       .then(data => { data.forEach(user => { const markup =
       `<li>${user.name}</li>`
       document.querySelector('ul').insertAdjacentHTML('beforeend', markup) })
-      console.log(data); }) .catch(error => console.log(error))
+      console.log(data); }) .catch(error => console.log(error)) */
     </script>
   </body>
 </html>

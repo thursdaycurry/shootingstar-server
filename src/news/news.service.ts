@@ -12,18 +12,21 @@ export class NewsService {
   constructor(
     // constructor injection for axios request
     private readonly httpService: HttpService,
+    private readonly newsRepository: NewsRepository,
   ) {}
 
   // getAllNews(): Observable<AxiosResponse<News[]>> {
   //   return this.httpService.get('http://107.21.144.61:5000/scrape/nyt');
   // }
 
-  getAllNews(): Observable<News[]> {
-    return this.httpService.get('http://107.21.144.61:5000/scrape/nyt').pipe(
-      map((response: AxiosResponse<News[]>) => {
-        return response.data;
-      }),
-    );
+  getAllNews() {
+    const scrapingData = this.httpService
+      .get('http://107.21.144.61:5000/scrape/nyt')
+      .pipe(
+        map((response: AxiosResponse<News[]>) => {
+          return response.data;
+        }),
+      );
   }
 
   // findOne(id: number) {
