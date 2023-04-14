@@ -26,6 +26,7 @@ export class NewsController {
 
   @Get()
   getAllNews() {
+    console.log('hello world');
     return this.newsService.getAllNews();
   }
 
