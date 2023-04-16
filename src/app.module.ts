@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NewsModule } from './news/news.module';
 import { BoardsModule } from './boards/boards.module';
+import { UsersModule } from './users/users.module';
 import * as dotenv from 'dotenv';
 
 console.log(__dirname);
@@ -33,6 +34,7 @@ console.log(__dirname);
       synchronize: true, // Only for dev env
     }),
     BoardsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

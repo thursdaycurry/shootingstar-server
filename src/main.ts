@@ -27,7 +27,7 @@ async function bootstrap() {
   // CORS allow
   app.enableCors({
     origin: true, // 모든 url에 개방
-    credentials: true, //프론트에서 credentials 설정 true
+    // credentials: true, //프론트에서 credentials 설정 true
   });
 
   await app.listen(3000);

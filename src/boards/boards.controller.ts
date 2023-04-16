@@ -32,6 +32,11 @@ export class BoardsController {
     return res.render('news', { layout: 'news' });
   }
 
+  @Get('login')
+  loginPage(@Res() res: Response) {
+    return res.render('login', { layout: 'login' });
+  }
+
   // @Post()
   // create(@Body() createBoardDto: CreateBoardDto) {
   //   return this.boardsService.create(createBoardDto);
