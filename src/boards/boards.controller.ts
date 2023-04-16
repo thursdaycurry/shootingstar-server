@@ -22,14 +22,15 @@ export class BoardsController {
   // @Get('news')
   // getNewsPage() {}
 
+  @Get('home')
+  getMainPage(@Res() res: Response) {
+    return res.render('home', { layout: 'home' });
+  }
+
   @Get('news')
   getNewsPage(@Res() res: Response) {
     return res.render('news', { layout: 'news' });
   }
-
-  @Render('home')
-  @Get('home')
-  getMainPage() {}
 
   // @Post()
   // create(@Body() createBoardDto: CreateBoardDto) {

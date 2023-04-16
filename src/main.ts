@@ -13,7 +13,7 @@ async function bootstrap() {
    * _dirname : current path
    */
   app.useStaticAssets(join(__dirname, '..', 'public')); // CSS, JS static files
-  // app.setBaseViewsDir(join(__dirname, '..', 'views')); // HTML
+  app.setBaseViewsDir(join(__dirname, '..', 'views/')); // HTML
   app.engine(
     'hbs',
     hbs({

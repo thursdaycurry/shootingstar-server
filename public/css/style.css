@@ -1,0 +1,8 @@
+td {
+  animation: fadeIn ease-in 0.5s backwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+}
