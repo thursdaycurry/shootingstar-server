@@ -29,7 +29,6 @@ export class NewsController {
 
   // * Scraping News
   @Get('/scrape')
-  @Render('main')
   async root() {
     const news = await this.newsService.scrape();
     return { message: news };
