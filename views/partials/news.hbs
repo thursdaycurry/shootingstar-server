@@ -1,0 +1,61 @@
+
+{{! localhost:3000/news/ }}
+
+<button
+  class='btn btn-outline-secondary mb-3'
+  onclick='getNews()'>Scan the world
+</button>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th scope='col'>#</th>
+      <th scope='col'>Date</th>
+      <th scope='col'>Resource</th>
+      <th scope='col'>Section</th>
+      <th scope='col'>title</th>
+      <th scope='col'>summary</th>
+    </tr>
+  </thead>
+  <tbody id='area-news-list'>
+    <tr>
+      <th scope='row'>1</th>
+      <td>2023-04-12</td>
+      <td>NewYorkTimes</td>
+      <td>Today</td>
+      <td>Headline</td>
+      <td>Summary..</td>
+    </tr>
+  </tbody>
+</table>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+  crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+      function getNews() {
+        $.ajax({
+          type: "GET",
+          url: "http://127.0.0.1:3000/news",
+          data: {},
+          success: function(response) {
+            $('#area-news-list').empty();
+            response.forEach((el, idx) => {
+              const list_temp = `
+              <tr>
+                <th>${idx+1}</th>
+                <td>${el.createdAt}</td>
+                <td>${el.resource}</td>
+                <td>${el.section}</td>
+                <td>${el.title}</td>
+                <td>${el.summary}</td>
+              </tr>`
+              $('#area-news-list').append(list_temp)
+            })
+          }
+        })
+      }
+    </script>
