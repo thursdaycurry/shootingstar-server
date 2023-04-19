@@ -22,22 +22,27 @@ export class NewsService {
     return this.newsRepository.find();
   }
 
-  scrape() {
-    // const scrapingData = this.httpService
-    //   .get('http://107.21.144.61:5000/scrape/nyt')
-    //   .pipe(
-    //     map((response: AxiosResponse<News[]>) => {
-    //       return response.data;
-    //     }),
-    //   );
-    const scrapingData = this.httpService
-      .get('http://107.21.144.61:5000/scrape/nyt')
-      .pipe(
-        map((response: AxiosResponse) => {
-          return response.data;
-        }),
-      );
+  async scrape() {
+    return await this.httpService.axiosRef.get('http://localhost:5000/scrape');
   }
+
+  // async scrape() {
+  //   // const scrapingData = this.httpService
+  //   //   .get('http://107.21.144.61:5000/scrape/nyt')
+  //   //   .pipe(
+  //   //     map((response: AxiosResponse<News[]>) => {
+  //   //       return response.data;
+  //   //     }),
+  //   //   );
+  //   const scrapingData = await this.httpService
+  //     .get('localhost:5000/scrape')
+  //     .pipe(
+  //       map((response: AxiosResponse) => {
+  //         return response.data;
+  //       }),
+  //     );
+  //   return scrapingData;
+  // }
 
   // findOne(id: number) {
   //   return `This action returns a #${id} news`;
@@ -45,7 +50,8 @@ export class NewsService {
 
   create(article) {
     // id, resource, section, title, summary, url
-    return this.newsRepository.save(article);
+    // return this.newsRepository.save(article);
+    console.log(article);
   }
 
   // update(id: number, updateNewsDto: UpdateNewsDto) {

@@ -21,18 +21,25 @@ export class NewsController {
     return this.newsService.getAllNews();
   }
 
-  // * Testing API: Push article into DB
+  // * Save articles from
   @Post()
   create(@Body() createNewsDto) {
     return this.newsService.create(createNewsDto);
   }
 
-  // * Scraping News
-  @Get('/scrape')
-  async root() {
-    const news = await this.newsService.scrape();
-    return { message: news };
-  }
+  /**
+   * deprecated API
+   * This API was made for scraping News from flask server.
+   * But this is not using anymore due to the change of architecture
+   * - Before : Flask server
+   * - After : Get POST request with data from google Apps Script
+   */
+  // @Get('/scrape')
+  // async root() {
+  //   const news = await this.newsService.scrape();
+
+  //   return { message: JSON.stringify(news) };
+  // }
 
   // @Get('/fake')
   // getFakeApi() {

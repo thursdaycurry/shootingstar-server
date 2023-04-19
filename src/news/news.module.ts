@@ -10,7 +10,7 @@ import { NewsEntity } from './entities/news.entity';
   imports: [
     // HttpModule is for axios to request to python server
     HttpModule.register({
-      timeout: 60000,
+      timeout: 120000,
       maxRedirects: 5,
     }),
     TypeOrmModule.forFeature([NewsEntity]),
