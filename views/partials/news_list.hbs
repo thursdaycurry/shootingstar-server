@@ -10,20 +10,13 @@
       <th scope='col'>#</th>
       <th scope='col'>Date</th>
       <th scope='col'>Resource</th>
-      <th scope='col'>Section</th>
       <th scope='col'>title</th>
-      <th scope='col'>summary</th>
+      {{!-- <th scope='col'>Section</th> --}}
+      {{!-- <th scope='col'>summary</th> --}}
     </tr>
   </thead>
   <tbody id='area-news-list'>
-    <tr>
-      <th scope='row'>1</th>
-      <td>2023-04-12</td>
-      <td>NewYorkTimes</td>
-      <td>Today</td>
-      <td>Headline</td>
-      <td>Summary..</td>
-    </tr>
+    {{!-- Where articles to be inserted --}}
   </tbody>
 </table>
 
@@ -45,11 +38,12 @@
               const list_temp = `
               <tr>
                 <th>${idx+1}</th>
-                <td>${el.createdAt}</td>
+                <td>${(el.createdAt).split('T')[0]}</td>
                 <td>${el.resource}</td>
-                <td>${el.section}</td>
                 <td>${el.title}</td>
-                <td>${el.summary}</td>
+                
+                {{!-- <td>${el.section}</td> --}}
+                {{!-- <td>${el.summary}</td> --}}
               </tr>`
               $('#area-news-list').append(list_temp)
             })

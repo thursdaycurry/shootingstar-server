@@ -16,39 +16,17 @@ import { UpdateNewsDto } from './dto/update-news.dto';
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}
 
+  // * Show all news
   @Get()
   getAllNews() {
     return this.newsService.getAllNews();
   }
 
-  // * Save articles from
+  // * Save articles from req body
   @Post()
   createNews(@Body() createNewsDto) {
     return this.newsService.createNews(createNewsDto);
   }
-
-  /**
-   * deprecated API
-   * This API was made for scraping News from flask server.
-   * But this is not using anymore due to the change of architecture
-   * - Before : Flask server
-   * - After : Get POST request with data from google Apps Script
-   */
-  // @Get('/scrape')
-  // async root() {
-  //   const news = await this.newsService.scrape();
-
-  //   return { message: JSON.stringify(news) };
-  // }
-
-  // @Get('/fake')
-  // getFakeApi() {
-  //   return [
-  //     { id: 1, name: 'John' },
-  //     { id: 2, name: 'Sujan' },
-  //     { id: 3, name: 'Rohan ' },
-  //   ];
-  // }
 
   // @Get(':id')
   // findOne(@Param('id') id: string) {
@@ -60,8 +38,9 @@ export class NewsController {
   //   return this.newsService.update(+id, updateNewsDto);
   // }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.newsService.remove(+id);
-  // }
+  // * Delete specific article
+  @Delete(':id')
+  deleteNews(@Param('id') id: string) {
+    return this.newsService.deleteNews(+id);
+  }
 }
