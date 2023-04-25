@@ -19,28 +19,28 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('login')
-  login(@Body() data) {
-    console.log(data);
+  // @Post('login')
+  // login(@Body() data) {
+  //   console.log(data);
+  // }
+
+  @Get()
+  getCurrentUser() {
+    return 'currentUser';
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.usersService.findAll();
-  // }
+  @Post()
+  async signUp() {
+    return 'signUp';
+  }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.usersService.findOne(+id);
-  // }
+  @Post('login')
+  logIn() {
+    return 'login';
+  }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  //   return this.usersService.update(+id, updateUserDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.usersService.remove(+id);
-  // }
+  @Post('logout')
+  logOut() {
+    return 'logout';
+  }
 }

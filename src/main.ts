@@ -30,6 +30,6 @@ async function bootstrap() {
     // credentials: true, //프론트에서 credentials 설정 true
   });
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
