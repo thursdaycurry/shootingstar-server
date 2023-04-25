@@ -4,7 +4,7 @@ import { NewsService } from './news.service';
 import { NewsController } from './news.controller';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { NewsEntity } from './entities/news.entity';
+import { News } from './entities/news.entity';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { NewsEntity } from './entities/news.entity';
       timeout: 120000,
       maxRedirects: 5,
     }),
-    TypeOrmModule.forFeature([NewsEntity]),
+    TypeOrmModule.forFeature([News]),
   ],
   controllers: [NewsController],
   providers: [NewsService],

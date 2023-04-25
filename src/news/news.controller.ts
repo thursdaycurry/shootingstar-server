@@ -23,8 +23,8 @@ export class NewsController {
 
   // * Save articles from
   @Post()
-  create(@Body() createNewsDto) {
-    return this.newsService.create(createNewsDto);
+  createNews(@Body() createNewsDto) {
+    return this.newsService.createNews(createNewsDto);
   }
 
   /**

@@ -18,10 +18,6 @@ import { Response } from 'express';
 export class BoardsController {
   constructor(private readonly boardsService: BoardsService) {}
 
-  // @Render('news')
-  // @Get('news')
-  // getNewsPage() {}
-
   @Get('home')
   getMainPage(@Res() res: Response) {
     return res.render('home', { layout: 'home' });

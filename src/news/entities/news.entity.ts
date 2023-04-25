@@ -3,22 +3,22 @@ import { CommonEntity } from 'src/common/entities/common.entities';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('News')
-export class NewsEntity extends CommonEntity {
+export class News extends CommonEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   resource: string;
 
-  @Column()
+  @Column({ nullable: true })
   section: string;
 
   @Column()
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   summary: string;
 
-  @Column()
+  @Column({ nullable: true })
   url: string;
 }
