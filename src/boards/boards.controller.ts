@@ -8,11 +8,13 @@ import {
   Delete,
   Render,
   Res,
+  UseInterceptors,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import { Response } from 'express';
+import { SuccessInterceptor } from 'src/common/interceptors/success.interceptor';
 
 @Controller('boards')
 export class BoardsController {

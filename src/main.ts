@@ -3,10 +3,14 @@ import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import * as hbs from 'express-handlebars';
+import { HttpExceptionFilter } from './common/exceptions/http-exception.filter';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   // const app = await NestFactory.create(AppModule);
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   /**
    * for applying MVC pattern
@@ -30,6 +34,10 @@ async function bootstrap() {
     // credentials: true, //프론트에서 credentials 설정 true
   });
 
-  await app.listen(process.env.PORT);
+  // 글로벌 validation pipe 설정
+  // DTO validation을 위함
+  app.useGlobalPipes(new ValidationPipe());
+
+  await app.listen(3000);
 }
 bootstrap();

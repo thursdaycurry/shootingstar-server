@@ -2,6 +2,14 @@ import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { CommonEntity } from 'src/common/entities/common.entities';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+/**
+ * For using class-validator, check here
+ * https://docs.nestjs.com/techniques/validation
+ *
+ * Before using, install this
+ * $ npm i --save class-validator class-transformer
+ */
+
 @Entity('User')
 export class User extends CommonEntity {
   @PrimaryGeneratedColumn()
@@ -17,7 +25,7 @@ export class User extends CommonEntity {
   @IsNotEmpty()
   username: string;
 
-  @Column()
+  @Column({ select: false })
   @IsString()
   @IsNotEmpty()
   password: string;
@@ -26,11 +34,3 @@ export class User extends CommonEntity {
   @IsString()
   imgUrl: string;
 }
-
-/**
- * For using class-validator, check here
- * https://docs.nestjs.com/techniques/validation
- *
- * Before using, install this
- * $ npm i --save class-validator class-transformer
- */

@@ -9,20 +9,18 @@ import {
   Req,
   UseInterceptors,
   UploadedFile,
+  UseFilters,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
 
+import { FileInterceptor } from '@nestjs/platform-express';
+import { HttpExceptionFilter } from 'src/common/exceptions/http-exception.filter';
+
+@UseFilters(HttpExceptionFilter)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
-  // @Post('login')
-  // login(@Body() data) {
-  //   console.log(data);
-  // }
 
   @Get()
   getCurrentUser() {
@@ -30,8 +28,13 @@ export class UsersController {
   }
 
   @Post()
-  async signUp() {
-    return 'signUp';
+  async signUp(@Body() body: CreateUserDto) {
+    return await this.usersService.signup(body);
+  }
+
+  @Get('all')
+  async getAllUsers() {
+    return await this.usersService.getAllUsers();
   }
 
   @Post('login')

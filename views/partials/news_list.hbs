@@ -34,7 +34,7 @@
           data: {},
           success: function(response) {
             $('#area-news-list').empty();
-            response.forEach((el, idx) => {
+            response["data"].forEach((el, idx) => {
               const list_temp = `
               <tr>
                 <th>${idx+1}</th>
